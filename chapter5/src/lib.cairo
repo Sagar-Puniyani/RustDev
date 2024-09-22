@@ -1,7 +1,20 @@
 mod hello;
+mod types;
+mod array;
 
 fn main() -> u32 {
-    hello::greeting();
+    // hello::greeting();
+    // types::type_conversion_implcit();
+
+    array::array_sample();
+    let val = array::get_method();
+    println!("value : {}", val);
+
+    array::at_method();
+
+    array::custom_datatype_array();
+    array::span_method();
+
     fib(16)
 }
 
