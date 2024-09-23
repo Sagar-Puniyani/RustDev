@@ -1,19 +1,23 @@
 mod hello;
 mod types;
 mod array;
+mod dict;
+
 
 fn main() -> u32 {
     // hello::greeting();
     // types::type_conversion_implcit();
 
-    array::array_sample();
-    let val = array::get_method();
-    println!("value : {}", val);
+    // array::array_sample();
+    // let val = array::get_method();
+    // println!("value : {}", val);
 
-    array::at_method();
+    // array::at_method();
 
-    array::custom_datatype_array();
-    array::span_method();
+    // array::custom_datatype_array();
+    // array::span_method();
+
+    dict::create_dict();
 
     fib(16)
 }
