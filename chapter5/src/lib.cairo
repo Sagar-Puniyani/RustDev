@@ -2,7 +2,7 @@ mod hello;
 mod types;
 mod array;
 mod dict;
-
+mod owner;
 
 fn main() -> u32 {
     // hello::greeting();
@@ -17,7 +17,36 @@ fn main() -> u32 {
     // array::custom_datatype_array();
     // array::span_method();
 
-    dict::create_dict();
+    // dict::create_dict();
+
+    // Ownership
+    let _a1 = owner::gives_ownership();
+    let a2 = owner::A {};
+    let _a3 = owner::takes_and_gives_back(a2); // a2 is moved into
+
+    let array1: Array<u128> = array![10, 20, 30, 40];
+
+    let (_arr2, len) = owner::calculate_len(array1);
+
+    println!("len is : {}", len);
+
+    let mut arr1: Array<u128> = array![10, 20, 30, 40];
+    let first_snap = @arr1;
+
+    let first_len = owner::calculate_length_snap(first_snap);
+    arr1.append(50);
+    let second_snap = @arr1;
+    let second_len = owner::calculate_length_snap(second_snap);
+
+    println!("The length of the array when the snapshot was taken is {}", first_len);
+    println!("The current length of the array is {}", second_len);
+
+    let mut rec = owner::Rectangle { height: 3, width: 10 };
+    let area = owner::calculate_area(@rec);
+    println!("Area: {}", area);
+
+    owner::flip(ref rec);
+    println!("height: {}, width: {}", rec.height, rec.width);
 
     fib(16)
 }

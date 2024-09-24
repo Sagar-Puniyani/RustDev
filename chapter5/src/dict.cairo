@@ -79,6 +79,17 @@ pub fn dict_custom_type() {
     assert!(*span.at(2) == 10, "Expecting 10");
 }
 
-pub fn dict_array_type(){
-    let arr = array![20, 19, 26];
+fn get_array_entry(ref dict: Felt252Dict<Nullable<Array<u8>>>, index: felt252) -> Span<u8> {
+    let (entry, _arr) = dict.entry(index);
+    let mut arr = _arr.deref_or(array![]);
+    let span = arr.span();
+    dict = entry.finalize(NullableTrait::new(arr));
+    span
 }
+pub fn dict_array_type() {
+    let arr = array![20, 19, 26];
+    let mut dict: Felt252Dict<Nullable<Array<u8>>> = Default::default();
+    dict.insert(0, NullableTrait::new(arr));
+    println!("Array: {:?}", get_array_entry(ref dict, 0));
+}
+
