@@ -3,6 +3,9 @@ mod types;
 mod array;
 mod dict;
 mod owner;
+mod method;
+
+use method::RectangleTrait;
 
 fn main() -> u32 {
     // hello::greeting();
@@ -47,6 +50,10 @@ fn main() -> u32 {
 
     owner::flip(ref rec);
     println!("height: {}, width: {}", rec.height, rec.width);
+
+    // traits
+    let rect1 = method::Rectangle { width: 30, height: 50, };
+    println!("Area is {}", rect1.area());
 
     fib(16)
 }

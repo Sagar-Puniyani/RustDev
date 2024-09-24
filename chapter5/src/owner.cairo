@@ -35,11 +35,11 @@ pub struct Rectangle {
     pub width: u64,
 }
 
-pub fn calculate_area(rec : @Rectangle) -> u64 {
+pub fn calculate_area(rec: @Rectangle) -> u64 {
     *rec.height * *rec.width
 }
 
-pub fn flip(ref rec : Rectangle){
+pub fn flip(ref rec: Rectangle) {
     let temp = rec.height;
     rec.height = rec.width;
     rec.width = temp;
